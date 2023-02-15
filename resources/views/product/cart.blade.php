@@ -51,7 +51,7 @@
                         <td>
                           <img
                             class="img-fluid"
-                            src="{{ asset('./../../albaik/') }}/{{ $cartitem->options->product_image }}"
+                            src="{{ asset('./../POS/') }}/{{ $cartitem->options->product_image }}"
                             alt=""
                           />
                         </td>

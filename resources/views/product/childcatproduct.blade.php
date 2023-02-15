@@ -11,11 +11,15 @@
                   <!-- Breadcrumb start -->
                   <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                      <li class="breadcrumb-item fw-bold"><a class="navigation-a" href="{{ route('home') }}">Home</a></li>
-                      <li class="breadcrumb-item fw-bold"><a class="navigation-a" href="#">Category</a></li>
-                      <li class="breadcrumb-item active fw-bold" aria-current="page">
-                        Product
-                      </li>
+                      <ol class="breadcrumb">
+                        <li class="breadcrumb-item fw-bold"><a href="{{ route('category.list',[$cat->id]) }}">{{$cat->category_name}}</a></li>
+                        @if($sub_cat)
+                        <li class="breadcrumb-item fw-bold"><a href="{{ route('category.subcategory.list',[$cat->id,$sub_cat->id]) }}">{{$sub_cat->subcategory_name}}</a></li>
+                        @endif
+                        @if($child_cat)
+                        <li class="breadcrumb-item active fw-bold" aria-current="page">{{$child_cat->childcategory_name}}</li>
+                        @endif
+                      </ol>
                     </ol>
                   </nav>
               <!-- Breadcrumb ends -->
@@ -25,7 +29,7 @@
               <div class="product-row my-3">
 
                 <div class="row justify-content-center">
-                    @forelse ($product as $p)
+                    @forelse ($product as $p){{$p->category}}
                     <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2">
                         <div class="card shadow mb-3">
                           <a href="#">

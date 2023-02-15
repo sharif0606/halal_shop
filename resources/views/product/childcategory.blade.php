@@ -8,7 +8,7 @@
         @forelse ($child_advertise as $childcat)
         <div class="col">
             <a href="#">
-              <img src="{{ asset('./../../albaik/uploads/childcategory') }}/{{ $childcat->advertise_image }}" alt="" />
+              <img src="{{ asset('./../POS/uploads/childcategory') }}/{{ $childcat->advertise_image }}" alt="" />
             </a>
           </div>
         @empty
@@ -24,11 +24,8 @@
       <!-- Breadcrumb start -->
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item fw-bold"><a href="{{ route('home') }}">Home</a></li>
-          <li class="breadcrumb-item fw-bold"><a href="#">Library</a></li>
-          <li class="breadcrumb-item active fw-bold" aria-current="page">
-            Data
-          </li>
+          <li class="breadcrumb-item fw-bold"><a href="{{ route('category.list',[$cat->id]) }}">{{$cat->category_name}}</a></li>
+          <li class="breadcrumb-item active fw-bold" aria-current="page">{{$sub_cat->subcategory_name}}</li>
         </ol>
       </nav>
       <!-- Breadcrumb ends -->
@@ -36,8 +33,8 @@
       <div class="row">
         @forelse ($show_childcategory as $childcat)
         <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-3">
-            <a href="{{ route('product.list',['childcategory_id' =>$childcat->id]) }}">
-              <img src="{{ asset('./../../albaik/uploads/childcategory') }}/{{ $childcat->banner_image }}" width="150" height="150" alt="" />
+            <a href="{{ route('category.product.list',[$childcat->sub_category?->category_id,$childcat->subcategory_id,$childcat->id]) }}">
+              <img src="{{ asset('./../POS/uploads/childcategory') }}/{{ $childcat->banner_image }}" width="150" height="150" alt="" />
               <p class="pe-5">{{ $childcat->childcategory_name }}</p></a
             >
           </div>

@@ -111,7 +111,7 @@
                     <div class="card shadow mb-3">
                       <a href="#">
                         <a href="{{ route('product_details.singleProduct',$p->id) }}">
-                      <img class="card-img-top" src="{{ asset('./../../albaik/') }}/{{ $p->item_image }}" width="200px" height="200px"/>
+                      <img class="card-img-top" src="{{ asset('./../POS/') }}/{{ $p->item_image }}" width="200px" height="200px"/>
                       </a>
                       <div class="card-body">
                         <p class="card-title text-center">{{ $p->item_name }}</p>
@@ -159,7 +159,7 @@
                     <div class="card shadow mb-3">
                       <a href="#">
                         <a href="{{ route('product_details.singleProduct',$off->id) }}">
-                      <img class="card-img-top" src="{{ asset('./../../albaik/') }}/{{ $off->item_image }}"  width="200px" height="200px"/>
+                      <img class="card-img-top" src="{{ asset('./../POS/') }}/{{ $off->item_image }}"  width="200px" height="200px"/>
                       </a>
                       <div class="card-body">
                         <p class="card-title text-center">{{ $off->item_name }}</p>
@@ -207,7 +207,7 @@
                     <div class="col-5">
                         <img
                         class="img-fluid"
-                        src="{{ asset('./../../albaik/uploads/category') }}/{{ $cat->image }}"
+                        src="{{ asset('./../POS/uploads/category') }}/{{ $cat->image }}"
                         alt=""
                         />
                     </div>

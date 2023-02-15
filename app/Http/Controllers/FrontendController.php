@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Faq;
 use App\Models\Frontend;
+use App\Models\Category;
+use App\Models\SubCategory;
+use App\Models\ChildCategory;
+use App\Models\Product;
 use App\Models\HeaderSlider;
 use App\Models\OurOffer;
 use Illuminate\Http\Request;
@@ -26,69 +30,46 @@ class FrontendController extends Controller
         return view('home',compact('faq','slide','offer','product','offer_product'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function subCategory($category_id)
     {
-        //
+        $show_subcategory = SubCategory::where('category_id',$category_id)->get();
+        $cat=Category::find($category_id);
+        // return $show_subcategory;
+        $subcategorys = DB::table('db_subcategory')->where('category_id',$category_id)->orderBy('id', 'desc')->where('is_advertise', '1')->select('is_advertise','advertise_image')->limit(6)->get();
+        // return $show_subcategory;
+        return view('product.subcategory',compact('show_subcategory','subcategorys','cat'));
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function childCategory($category_id,$subcategory_id)
     {
-        //
+        $show_childcategory = ChildCategory::where('subcategory_id',$subcategory_id)->get();
+        $sub_cat=SubCategory::find($subcategory_id);
+        $cat=Category::find($category_id);
+        $child_advertise = DB::table('db_childcategory')->where('subcategory_id',$subcategory_id)->orderBy('id', 'desc')->where('is_advertise', '1')->select('is_advertise','advertise_image')->limit(6)->get();
+        return view('product.childcategory',compact('show_childcategory','child_advertise','cat','sub_cat'));
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Frontend  $frontend
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Frontend $frontend)
+    public function childCategoryProductList($category_id,$subcategory_id=false,$childcategory_id=false)
     {
-        //
-    }
+        $child_cat=$sub_cat=false;
+        $product =Product::select('id','item_name','sales_price','item_image','is_feature');
+        if($childcategory_id){
+            $product =$product->where('childcategory_id', $childcategory_id);
+            $child_cat=ChildCategory::find($childcategory_id);
+            $sub_cat=SubCategory::find($subcategory_id);
+        }else if($subcategory_id){
+            $product =$product->where('subcategory_id', $subcategory_id);
+            $sub_cat=SubCategory::find($subcategory_id);
+        }else{
+            $product =$product->where('category_id', $category_id);
+        }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Frontend  $frontend
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Frontend $frontend)
-    {
-        //
-    }
+        $cat=Category::find($category_id);
+        $product =$product->paginate(12);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Frontend  $frontend
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Frontend $frontend)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Frontend  $frontend
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Frontend $frontend)
-    {
-        //
+        // return $product;
+        return view('product.childcatproduct',compact('product','cat','sub_cat','child_cat'));
     }
 }

@@ -8,7 +8,7 @@
         @forelse ($advertise_img as $cat)
         <div class="col">
           <a href="#">
-            <img src="{{ asset('./../../albaik/uploads/category') }}/{{ $cat->advertise_image }}" alt="" />
+            <img src="{{ asset('./../POS/uploads/category') }}/{{ $cat->advertise_image }}" alt="" />
           </a>
         </div>
         @empty
@@ -37,7 +37,7 @@
         @forelse ($category as $cat)
         <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-3">
             <a href="{{ route('subcategory.list',['category_id' =>$cat->id]) }}">
-              <img src="{{ asset('./../../albaik/uploads/category') }}/{{ $cat->banner_image }}" alt="" />
+              <img src="{{ asset('./../POS/uploads/category') }}/{{ $cat->banner_image }}" alt="" />
               <p>{{ $cat->category_name }}</p></a
             >
           </div>

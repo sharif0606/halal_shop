@@ -34,7 +34,7 @@
                 <span>off</span>
                 <img
                 class="img-fluid"
-                src="{{ asset('./../../albaik/') }}/{{ $show_product->item_image }}"
+                src="{{ asset('./../POS/') }}/{{ $show_product->item_image }}"
                 alt=""
                 />
             </div>
@@ -211,7 +211,7 @@
                 <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2">
                     <div class="card shadow mb-3">
                         <a href="{{ route('product_details.singleProduct',$rproduct->id) }}">
-                            <img class="card-img-top" src="{{ asset('./../../albaik/') }}/{{ $rproduct->item_image }}"/>
+                            <img class="card-img-top" src="{{ asset('./../POS/') }}/{{ $rproduct->item_image }}"/>
                         </a>
                     <div class="card-body">
                         <p class="card-title text-center"> {{ $rproduct->item_name }} </p>

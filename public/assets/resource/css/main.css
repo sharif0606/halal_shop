@@ -334,4 +334,12 @@ footer {
   }
 }
 
-
+.categorybutton.show{
+  color: var(--brand-color);
+}
+.subcategorybutton.show{
+  color: var(--brand-color);
+}
+.childcategorybutton.show{
+  color: var(--brand-color);
+}

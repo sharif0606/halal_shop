@@ -8,7 +8,7 @@
         @forelse ($subcategorys as $subcat)
         <div class="col">
             <a href="#">
-              <img src="{{ asset('./../../albaik/uploads/subcategory') }}/{{ $subcat->advertise_image }}" alt="" />
+              <img src="{{ asset('./../POS/uploads/subcategory') }}/{{ $subcat->advertise_image }}" alt="" />
             </a>
           </div>
         @empty
@@ -24,23 +24,28 @@
       <!-- Breadcrumb start -->
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item fw-bold"><a href="{{ route('home') }}">Home</a></li>
-          <li class="breadcrumb-item fw-bold"><a href="#">Library</a></li>
-          {{-- <li class="breadcrumb-item active fw-bold" aria-current="page">
-            Data
-          </li> --}}
+          <li class="breadcrumb-item active fw-bold" aria-current="page">{{$show_subcategory[0]?->category?->category_name}}</li>
         </ol>
       </nav>
       <!-- Breadcrumb ends -->
       <!-- sub catagory -->
       <div class="row">
         @forelse ($show_subcategory as $subcat)
-        <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-3">
-            <a href="{{ route('child-category.list',['subcategory_id' =>$subcat->id]) }}">
-              <img src="{{ asset('./../../albaik/uploads/subcategory') }}/{{ $subcat->banner_image }}" width="150" height="150" alt="" />
-              <p class="pe-5">{{ $subcat->subcategory_name }}</p></a
-            >
-          </div>
+          @if($subcat->child_category->count()>0)
+            <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-3">
+              <a href="{{ route('category.subcategory.list',[$subcat->category_id,$subcat->id]) }}">
+                <img src="{{ asset('./../POS/uploads/subcategory') }}/{{ $subcat->banner_image }}" width="150" height="150" alt="" />
+                <p class="pe-5">{{ $subcat->subcategory_name }}</p></a
+              >
+            </div>
+          @else
+            <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 mb-3">
+              <a href="{{ route('category.product.list',[$subcat->category_id,$subcat->id]) }}">
+                <img src="{{ asset('./../POS/uploads/subcategory') }}/{{ $subcat->banner_image }}" width="150" height="150" alt="" />
+                <p class="pe-5">{{ $subcat->subcategory_name }}</p></a
+              >
+            </div>
+          @endif
         @empty
         <h3 class="text-center">No Sub-Category Found</h3>
         @endforelse
