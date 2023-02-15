@@ -360,17 +360,13 @@
             <?php if($CI->permissions('expense_category_view')) { ?>
             <li class="expense-category-list-active-li "><a href="<?php echo $base_url; ?>expense/category"><i class="fa fa-list "></i> <span><?= $this->lang->line('categories_list'); ?></span></a></li>
             <?php } ?>
-            <?php if($CI->permissions('expense_category_view')) { ?>
-            <li class="hidden expense-category-list-active-li "><a href="http://162.0.226.157/acc104/auth/auth_login/check_database/<?= $this->session->userdata('inv_userid'); ?>"><i class="fa fa-list "></i> <span><?= $this->lang->line('accounts'); ?></span></a></li>
-            <?php } ?>
-
           </ul>
         </li>
         <?php } ?>
 
         <?php if($CI->permissions('expense_view')) { ?>
-       <li class="hidden expense-list-active-li expense-active-li expense-category-active-li expense-category-list-active-li">
-          <a href="http://162.0.226.157/acc104/auth/auth_login/check_database/<?= $this->session->userdata('inv_userid'); ?>">
+       <li class="expense-list-active-li expense-active-li expense-category-active-li expense-category-list-active-li">
+          <a href="https://quickpicker.xyz/halal_shop/accounts/auth/auth_login/check_database/<?= $this->session->userdata('inv_userid'); ?>">
             <i class="fa fa-minus-circle text-aqua"></i> <span><?= $this->lang->line('accounts'); ?></span>
           </a>
         </li>

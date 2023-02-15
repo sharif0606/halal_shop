@@ -35,7 +35,7 @@
 
 	<ul class="nav nav-list">
 		<li class="hover <?php if($this->uri->segment(1)=="dashboard") {echo 'active open';}?>">
-			<a href="http://103.174.152.19/mariumfashion">
+			<a href="https://quickpicker.xyz/halal_shop/POS/">
 				<i class="menu-icon fa fa-tachometer"></i>
 				<span class="menu-text">POS</span>
 			</a>
