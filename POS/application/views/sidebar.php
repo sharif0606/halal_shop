@@ -365,8 +365,8 @@
         <?php } ?>
 
         <?php if($CI->permissions('expense_view')) { ?>
-       <li class="hidden expense-list-active-li expense-active-li expense-category-active-li expense-category-list-active-li">
-          <a href="https://quickpicker.xyz/halal_shop/accounts/auth/auth_login/check_database/<?= $this->session->userdata('inv_userid'); ?>">
+       <li class=" expense-list-active-li expense-active-li expense-category-active-li expense-category-list-active-li">
+          <a href="<?php echo $base_url; ?>accounts/accounts">
             <i class="fa fa-minus-circle text-aqua"></i> <span><?= $this->lang->line('accounts'); ?></span>
           </a>
         </li>
